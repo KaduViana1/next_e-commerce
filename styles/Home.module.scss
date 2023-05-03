@@ -1,0 +1,14 @@
+.productsContainer {
+  width: 100%;
+  display: grid;
+  padding-inline: 10px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
+@media (min-width: 900px) {
+  .productsContainer {
+    padding-inline: 20%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
