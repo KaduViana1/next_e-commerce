@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   font-size: 1.5rem;
-  padding-inline: 10px;
+  padding-inline: 20px;
 
   nav {
     width: 100%;
@@ -63,14 +63,14 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: hsl(0, 96%, 48%);
+    background-color: $secondary-color;
     border-radius: 50%;
     font-size: 0.8rem;
     font-weight: bold;
     color: white;
     right: -10px;
     top: -5px;
-    padding-top: 1px;
+    padding-top: 2px;
   }
 }
 

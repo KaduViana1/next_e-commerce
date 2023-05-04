@@ -5,11 +5,7 @@ import { CartContext } from '@/context/CartContext';
 
 function ProductCard({ product }) {
   const router = useRouter();
-  const { cartProducts, setCartProducts } = useContext(CartContext);
-
-  function addToCart(productId) {
-    setCartProducts(prev => [...prev, productId]);
-  }
+  const { cartProducts, setCartProducts, addToCart } = useContext(CartContext);
 
   return (
     <div
