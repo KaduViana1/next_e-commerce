@@ -7,38 +7,66 @@
   justify-content: center;
   align-items: center;
   height: 700px;
-  gap: 30px;
+  gap: 20px;
 
   span {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
   }
 
   button {
-    width: 400px;
-    height: 50px;
+    width: 300px;
+    height: 40px;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border: none;
     background-color: $primary-color;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 8px;
   }
 
   svg {
-    width: 30px;
+    width: 20px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 30px;
+    span {
+      font-size: 3rem;
+    }
+
+    button {
+      width: 400px;
+      height: 50px;
+      gap: 15px;
+
+      svg {
+        width: 30px;
+      }
+    }
+  }
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media (min-width: 900px) {
+    padding-inline: 15%;
+    flex-direction: row;
+    gap: 30px;
   }
 }
 
 .cartProducts {
+  margin-top: 15px;
   background-color: white;
-  color: black;
 
   header {
-    margin-top: 1rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -69,6 +97,10 @@
       }
     }
   }
+  @media (min-width: 900px) {
+    width: 60%;
+    height: min-content;
+  }
 }
 
 .sectionTitle {
@@ -81,12 +113,6 @@
     height: 25px;
     color: $primary-color;
   }
-}
-
-.pageContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 
 .productContainer {
@@ -116,6 +142,7 @@
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+  width: max-content;
 
   &:hover,
   &:focus {
@@ -163,7 +190,7 @@
 }
 
 .paymentContainer {
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -178,6 +205,7 @@
     font-weight: bold;
     border: none;
     color: white;
+    cursor: pointer;
   }
 }
 
@@ -192,7 +220,7 @@
 }
 
 .confirm {
-  background-color: hsl(146, 65%, 34%);
+  background-color: $green-color;
 }
 
 .orderInfos {
@@ -214,5 +242,11 @@
       border-radius: 8px;
       padding-left: 5px;
     }
+  }
+}
+
+.infoAndPayment {
+  @media (min-width: 900px) {
+    width: 40%;
   }
 }

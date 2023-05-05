@@ -15,7 +15,6 @@ export default function Cart() {
   } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
   const [postal, setPostal] = useState('');
   const [street, setStreet] = useState('');
@@ -37,11 +36,29 @@ export default function Cart() {
     total += price;
   }
 
+  async function makeOrder() {
+    const response = await axios.post('/api/checkout', {
+      name,
+      city,
+      postal,
+      street,
+      cartProducts,
+    });
+    if (response.data.success) {
+      resetCart();
+      router.push('/cart?success=1');
+    }
+  }
+
   return (
     <>
       {cartProducts.length <= 0 && (
         <div className={styles.emptyCart}>
-          <span>Your Cart is Empty</span>
+          <span>
+            {window.location.href.includes('success')
+              ? 'Thank you for your order'
+              : 'Your cart is empty'}
+          </span>
           <button onClick={() => router.push('/')}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -166,91 +183,93 @@ export default function Cart() {
                   </div>
                 ))}
             </div>
-            <div className={styles.orderInfos}>
-              <span className={styles.sectionTitle}>
-                {' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+            <div className={styles.infoAndPayment}>
+              <div className={styles.orderInfos}>
+                <span className={styles.sectionTitle}>
+                  {' '}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                    />
+                  </svg>
+                  Order info
+                </span>
+                <form>
+                  <input
+                    className={styles.infoInput}
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    name="name"
+                    onChange={e => setName(e.target.value)}
                   />
-                </svg>
-                Order info
-              </span>
-              <form>
-                <input
-                  className={styles.infoInput}
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  name="name"
-                  onChange={e => setName(e.target.value)}
-                />
-                <input
-                  className={styles.infoInput}
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <input
-                  className={styles.infoInput}
-                  type="number"
-                  name="postal"
-                  placeholder="Postal Code"
-                  value={postal}
-                  onChange={e => setPostal(e.target.value)}
-                />
-                <input
-                  className={styles.infoInput}
-                  type="text"
-                  name="city"
-                  placeholder="City"
-                  value={city}
-                  onChange={e => setCity(e.target.value)}
-                />
-                <input
-                  className={styles.infoInput}
-                  type="text"
-                  name="street"
-                  placeholder="Street Address"
-                  value={street}
-                  onChange={e => setStreet(e.target.value)}
-                />
-              </form>
-            </div>
-            <div className={styles.paymentContainer}>
-              <span className={styles.sectionTitle}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  <input
+                    className={styles.infoInput}
+                    type="number"
+                    name="postal"
+                    placeholder="Postal Code"
+                    value={postal}
+                    onChange={e => setPostal(e.target.value)}
                   />
-                </svg>
-                Total:{' '}
-                <span className={styles.totalPrice}> ${total.toFixed(2)}</span>
-              </span>
-              <button className={styles.confirm}>Confirm order</button>
-              <button className={styles.keep} onClick={() => router.push('/')}>
-                Keep shopping
-              </button>
+                  <input
+                    className={styles.infoInput}
+                    type="text"
+                    name="city"
+                    placeholder="City"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                  />
+                  <input
+                    className={styles.infoInput}
+                    type="text"
+                    name="street"
+                    placeholder="Street Address"
+                    value={street}
+                    onChange={e => setStreet(e.target.value)}
+                  />
+                </form>
+              </div>
+              <div className={styles.paymentContainer}>
+                <span className={styles.sectionTitle}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Total:{' '}
+                  <span className={styles.totalPrice}>
+                    {' '}
+                    ${total.toFixed(2)}
+                  </span>
+                </span>
+                <button onClick={makeOrder} className={styles.confirm}>
+                  Confirm order
+                </button>
+                <button
+                  className={styles.keep}
+                  onClick={() => router.push('/')}
+                >
+                  Keep shopping
+                </button>
+              </div>
             </div>
           </div>
         </>

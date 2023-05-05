@@ -10,13 +10,13 @@ function ProductCard({ product }) {
   return (
     <div
       className={styles.cardContainer}
-      onClick={() => router.push(`/products/${product._id}`)}
+      onClick={() => router.push(`/product/${product._id}`)}
     >
       <img src={product.images[0]} />
       <div className={styles.infos}>
         <p>
           {product.title.length > 35
-            ? product.title.slice(0, 35) + '...'
+            ? product.title.slice(0, 30) + '...'
             : product.title}
         </p>
         <span>${product.price}</span>
