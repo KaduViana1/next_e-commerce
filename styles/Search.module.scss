@@ -1,0 +1,142 @@
+@import './variables';
+
+.pageContainer {
+  padding-top: 20px;
+  padding-inline: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+
+  & > span {
+    margin-top: 35lvh;
+    font-size: 2.5rem;
+    margin-inline: auto;
+  }
+
+  & > button {
+    width: 300px;
+    height: 40px;
+    color: white;
+    font-size: 1.3rem;
+    border: none;
+    background-color: $primary-color;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-inline: auto;
+  }
+
+  svg {
+    width: 20px;
+  }
+
+  @media (min-width: 900px) {
+    padding-inline: 20%;
+  }
+}
+
+.productContainer {
+  width: 100%;
+  border: 2px solid $light-gray;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  padding: 5px 10px 5px 5px;
+  gap: 5px;
+
+  img {
+    margin-block: auto;
+    width: 80px;
+    height: 80px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 10px;
+
+    img {
+      width: 180px;
+      height: 180px;
+    }
+  }
+}
+
+.mobileH3,
+.mobileP {
+  @media (min-width: 900px) {
+    display: none;
+  }
+}
+
+.mobileH3 {
+  font-size: 1.1rem;
+}
+
+.mobileP {
+  font-size: 0.9rem;
+  color: hsl(0, 0%, 50%);
+}
+
+.desktopH3,
+.desktopP {
+  display: none;
+
+  @media (min-width: 900px) {
+    display: flex;
+  }
+}
+
+.desktopH3 {
+  font-size: 1.5rem;
+}
+
+.infos {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: 5px;
+  gap: 10px;
+}
+
+.priceAndButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  span {
+    color: $primary-color;
+    font-size: 1.5rem;
+
+    font-weight: bold;
+    @media (min-width: 900px) {
+      font-size: 2rem;
+    }
+  }
+
+  button {
+    display: flex;
+    border: none;
+    align-items: center;
+    color: white;
+    background-color: $primary-color;
+    padding: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    svg {
+      width: 18px;
+    }
+
+    @media (min-width: 900px) {
+      font-size: 1.4rem;
+
+      svg {
+        width: 1.5rem;
+      }
+    }
+  }
+}

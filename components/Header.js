@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import styles from '../styles/Header.module.scss';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '@/context/CartContext';
 
 function Header() {
   const router = useRouter();
   const { cartProducts } = useContext(CartContext);
+  const [search, setSearch] = useState('');
 
   return (
     <header className={styles.header}>
@@ -36,8 +37,21 @@ function Header() {
             <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
           </svg>
         </button>
-        <div className={styles.searchContainer}>
-          <input placeholder="Search" type="search"></input>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            if (search.length > 0) {
+              router.push(`/search?s=${search}`);
+            }
+          }}
+          className={styles.searchContainer}
+        >
+          <input
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search"
+            type="search"
+            value={search}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -52,7 +66,7 @@ function Header() {
               d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
             />
           </svg>
-        </div>
+        </form>
         <button
           className={styles.navButton}
           onClick={() => router.push('/account')}

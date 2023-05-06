@@ -20,7 +20,7 @@ export default function ProductPage({ product }) {
         <div className={styles.imageSelector}>
           {product.images.map(img => (
             <button onClick={() => setDislplayedImage(img)}>
-              <img src={img} alt="Product image" />
+              <img key={img} src={img} alt="Product image" />
             </button>
           ))}
         </div>
