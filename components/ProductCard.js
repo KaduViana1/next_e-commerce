@@ -14,7 +14,8 @@ function ProductCard({ product }) {
     >
       <img src={product.images[0]} />
       <div className={styles.infos}>
-        <p>
+        <p className={styles.titleDesktop}>{product.title}</p>
+        <p className={styles.titleMobile}>
           {product.title.length > 35
             ? product.title.slice(0, 30) + '...'
             : product.title}

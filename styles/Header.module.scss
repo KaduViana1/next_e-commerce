@@ -30,19 +30,43 @@
   }
 }
 
+.logoDesktop {
+  font-family: 'Bruno Ace SC', cursive;
+  font-size: 1.7rem;
+  color: hsl(157, 98%, 45%);
+  display: none;
+
+  @media (min-width: 900px) {
+    display: block;
+  }
+}
+
+.logoMobile {
+  font-family: 'Bruno Ace SC', cursive;
+  font-size: 2rem;
+  color: hsl(157, 98%, 45%);
+
+  @media (min-width: 900px) {
+    display: none;
+  }
+}
+
 .searchContainer {
   display: flex;
   position: relative;
   align-items: center;
   width: 50%;
+}
 
-  svg {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    color: black;
-    right: 5px;
-  }
+.search {
+  background-color: transparent;
+  border: none;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  color: black;
+  right: 10px;
+  cursor: pointer;
 }
 
 .navButton {

@@ -1,6 +1,6 @@
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/Product';
-import styles from '../styles/Search.module.scss';
+import styles from '@/styles/Search.module.scss';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContext';
