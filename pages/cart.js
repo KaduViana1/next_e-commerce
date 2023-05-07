@@ -18,6 +18,7 @@ export default function Cart() {
   const [city, setCity] = useState('');
   const [postal, setPostal] = useState('');
   const [street, setStreet] = useState('');
+  const [purchased, setPurchased] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,6 +30,10 @@ export default function Cart() {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    return setPurchased(false);
+  }, []);
 
   let total = 0;
   for (const productId of cartProducts) {
@@ -46,7 +51,8 @@ export default function Cart() {
     });
     if (response.data.success) {
       resetCart();
-      router.push('/cart?success=1');
+      await setPurchased(true);
+      router.push('/cart');
     }
   }
 
@@ -55,9 +61,7 @@ export default function Cart() {
       {cartProducts.length <= 0 && (
         <div className={styles.emptyCart}>
           <span>
-            {window.location.href.includes('success')
-              ? 'Thank you for your order'
-              : 'Your cart is empty'}
+            {purchased ? 'Thank you for your order' : 'Your cart is empty'}
           </span>
           <button onClick={() => router.push('/')}>
             <svg
@@ -111,7 +115,7 @@ export default function Cart() {
               {products.length > 0 &&
                 products.map(product => (
                   <div className={styles.productContainer} key={product._id}>
-                    <img src={product.images[0]} />
+                    <img alt={product.title} src={product.images[0]} />
                     <div>
                       <Link
                         href={`/product/${product._id}`}

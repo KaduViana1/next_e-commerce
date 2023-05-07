@@ -12,7 +12,7 @@ function ProductCard({ product }) {
       className={styles.cardContainer}
       onClick={() => router.push(`/product/${product._id}`)}
     >
-      <img src={product.images[0]} />
+      <img alt={product.title} src={product.images[0]} />
       <div className={styles.infos}>
         <p className={styles.titleDesktop}>{product.title}</p>
         <p className={styles.titleMobile}>
