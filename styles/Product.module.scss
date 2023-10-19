@@ -116,6 +116,8 @@
 }
 
 .addButton {
+  min-width: fit-content;
+  padding-inline: 10px;
   width: 70%;
   height: 40px;
   color: white;

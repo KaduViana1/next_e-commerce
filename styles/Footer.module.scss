@@ -1,0 +1,36 @@
+@import './variables';
+
+.footer {
+  width: 100%;
+  background-color: $primary-color;
+  color: $light-gray;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: auto;
+
+  span {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  ul {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.footer li {
+  list-style: none;
+}
+
+.footer svg {
+  width: 30px;
+  height: 30px;
+}
+
+.footer svg:hover {
+  color: white;
+}

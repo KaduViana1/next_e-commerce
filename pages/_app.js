@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { CartContextProvider } from '@/context/CartContext';
 import '@/styles/globals.css';
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }) {
         </Head>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </CartContextProvider>
     </>
   );
